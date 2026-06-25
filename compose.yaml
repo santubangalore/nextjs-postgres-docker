@@ -41,17 +41,19 @@ services:
             - node_modules/
         - action: rebuild
           path: package.json
- 
+    
   web:
     build: .
     environment:
       - DATABASE_URL=postgresql://postgres:example@db:5432/dev-db?schema=public
     depends_on:
       - db
-    command: >
-      sh -c " npx prisma db push && npx prisma generate"
-      sh -c "npx prisma migrate deploy "
-     # sh -c "npx prisma migrate deploy && npm run start"
+    command: 
+       sh -c "npx prisma generate"
+       sh -c " npm i @prisma/client@latest @prisma/adapter-pg"
+       sh -c " npm run dev "
+     
+   
       
     # If your application exposes a port, uncomment the following lines and change
     # the port numbers as needed. The first number is the host port and the second
