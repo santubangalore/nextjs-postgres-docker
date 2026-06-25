@@ -31,7 +31,8 @@ services:
     ports:
         - 3000:3000
     environment:
-      NODE_ENV: development
+        DATABASE_URL: postgres://postgres:example@db:5432/dev-db?schema=public
+        NODE_ENV: development
     develop:
       watch:
         - action: sync
